@@ -9,12 +9,16 @@ public class Lab_02
 		System.out.println(a + " " + "multiplied by" + " " + b + " " + "is" + " " + multiply);
 		System.out.println(a + " multiplied by " + b + " is " + multiply);
 		
-		String Name = "Elmo";
-		String Address = " 1313 Sesame Street\n";
-		String City = " San Diego, CA";
+		System.out.println();
+		
+		String Name = "Elmo\n";
+		String Address = "1313 Sesame Street\n";
+		String City = "San Diego, CA";
 		String Zip = " 92345";
 		
 		System.out.println(Name + Address + City + Zip);
+		
+		System.out.println();
 		
 		int l = 2;
 		int w = 3;
