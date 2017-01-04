@@ -20,7 +20,7 @@ public class Lab_11_1_GameGun2
 		while(turn != "Q" && healthCount > 0)
 		{
 			System.out.println("Your turn! Hit Enter when ready: ");
-			turn = kb.next();
+			turn = kb.nextLine();
 			damage = (int)(Math.random()*2 + 1);
 			amount = (int)(Math.random()*6 + 1);
 			System.out.println(takeDamage(damage, amount));
