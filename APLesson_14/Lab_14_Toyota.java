@@ -9,10 +9,14 @@ public class Lab_14_Toyota implements Lab_14_Location
 		location = new double[2];
 	}
 	
-	public Lab_14_Toyota(String c)
+	public Lab_14_Toyota(String l)
 	{
-		xcoor = Double.parseDouble(c.substring(0,1));
-		ycoor = Double.parseDouble(c.substring(3));
+		//String[] locs = l.split(", ");
+		//location[0] = Double.parseDouble(locs[0]);
+		//location[1] = Double.parseDouble(locs[1]);
+		
+		xcoor = Double.parseDouble(l.substring(0,1));
+		ycoor = Double.parseDouble(l.substring(3));
 	}
 	
 	public int getID()
@@ -22,6 +26,9 @@ public class Lab_14_Toyota implements Lab_14_Location
 	
 	public void move(double x, double y)
 	{
+		//location[0] += x;
+		//location[1] += y;
+		
 		xcoor = x;
 		ycoor = y;
 	}
