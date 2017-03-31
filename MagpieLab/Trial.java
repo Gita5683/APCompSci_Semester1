@@ -1,4 +1,4 @@
-public class Magpie2
+public class Trial
 {
 	/** Get a default greeting @return a greeting*/
 	public String getGreeting()
@@ -31,28 +31,28 @@ public class Magpie2
 		/** To be completed in Exercise_02:
 		 * 	Modify the following code to use the findKeyword
 		 * 	Method (details in "Exercise_02" below. */
-		if (findKeyword(statement, "no", 0) >= 0)
+		if (statement.indexOf("no") >= 0)
 		{
 			response = "Why so negative?";
 		}
 
-		else if (findKeyword(statement, "mother", 0) >= 0
-				|| findKeyword(statement, "father", 0) >= 0
-				|| findKeyword(statement, "sister", 0) >= 0
-				|| findKeyword(statement, "brother", 0) >= 0)
+		else if (statement.indexOf("mother") >= 0
+				|| statement.indexOf("father") >= 0
+				|| statement.indexOf("sister") >= 0
+				|| statement.indexOf("brother") >= 0)
 		{
 			response = "Tell me more about your family.";
 		}
 		
-		else if (findKeyword(statement, "cat", 0) >= 0
-				|| findKeyword(statement, "dog", 0) >= 0
-				|| findKeyword(statement, "fish", 0) >= 0
-				|| findKeyword(statement, "turtle", 0) >= 0)
+		else if (statement.indexOf("cat") >= 0
+				|| statement.indexOf("dog") >= 0
+				|| statement.indexOf("fish") >= 0
+				|| statement.indexOf("turtle") >= 0)
 		{
 			response = "Tell me more about your pet.";		
 		}
 
-		else if (findKeyword(statement, "Robinette", 0) >= 0)
+		else if (statement.indexOf("Robinette") >= 0)
 		{
 			response = "He sounds like a pretty dank teacher.";
 		}
@@ -79,58 +79,33 @@ public class Magpie2
 	 * ========================================================= */
 	private int findKeyword(String statement, String goal, int startPos)
 	{
-		/* New String variable phrase = a more searchable version of statement.
-		 	-Use a combination of trim() and toLowerCase() modify statement.
+		String phrase = statement.trim().toLowerCase();
+		goal = goal.toLowerCase();
 
-		   New int variable psn = the location of goal in phrase after
-		   startPos
+		int psn = phrase.indexOf(goal, startPos);
 
-			-->Refinement: Make sure we find goal by itself, and not part
-			of another word ("no" vs no in "know"). if you find an occurrence
-			of goal, make sure before and after aren't letters. */
-			
-		String phrase = statement.trim();
-		int psn = phrase.toLowerCase().indexOf(goal.toLowerCase(), startPos);
-		
-		while(psn > 0)
+		while (psn >= 0)
 		{
-			String before = " ";
-			String after = " ";
-			
-			/* As long as psn >= 0...
-				Check if psn > 0 - there is no need to check for before at the
-				beginning of the word
-					set before = the slot in phrase before psn */
-			if(psn > 0)
-			{
-				before = phrase.substring(psn - 1, psn).toLowerCase();
-			}
-			
-			/*check if you can fit goal into the rest of phrase - no need to
-				proceed otherwise
-					set after = the slot in phrase after psn + length of goal */
 
-			if(psn + goal.length() < phrase.length())
+			String before = " ", after = " ";
+			if (psn > 0)
 			{
-				after = phrase.substring(psn + goal.length(), psn + goal.length() + 1).toLowerCase();
+				before = phrase.substring(psn - 1, psn);
 			}
-			
-			/* if before and after are not letters (compare before to "a"
-					and after to "z")
-						--return psn
+			if (psn + goal.length() < phrase.length())
+			{
+				after = phrase.substring(psn + goal.length(),
+										psn + goal.length() + 1);
+			}
 
-				Otherwise, search for goal in phrase from psn + 1 forward */
-			
-			if(((before.compareTo("a") < 0) || (before.compareTo("z") > 0)) && ((after.compareTo("a") < 0) || (after.compareTo("z") > 0)))
+			if (((before.compareTo("a") < 0) || (before.compareTo("z") > 0))
+					&& ((after.compareTo("a") < 0) || (after.compareTo("z") > 0)))
 			{
 				return psn;
 			}
-			
-			else
-			{
-				psn = phrase.indexOf(goal.toLowerCase(), psn + 1);
-			}
+			psn = phrase.indexOf(goal, psn + 1);
 		}
+
 		return -1;
 	}
 
