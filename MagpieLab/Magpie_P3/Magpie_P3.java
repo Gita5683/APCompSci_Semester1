@@ -1,5 +1,5 @@
-package Complete;
-public class Magpie3
+import java.util.Scanner;
+public class Magpie_P3
 {
 	public String getGreeting()
 	{
@@ -20,10 +20,12 @@ public class Magpie3
 		{
 			response = "Say something, please.";
 		}
+		
 		else if (findKeyword(statement, "no") >= 0)
 		{
 			response = "Why so negative?";
 		}
+		
 		else if (findKeyword(statement, "mother") >= 0
 				|| findKeyword(statement, "father") >= 0
 				|| findKeyword(statement, "sister") >= 0
@@ -32,23 +34,92 @@ public class Magpie3
 			response = "Tell me more about your family.";
 		}
 
-		/* place code for pet keywords here */
-
-		/* place code for keyword "Robinette" here */
-
-
-		else if (statement.trim().length() == 0)
+		else if (findKeyword(statement, "dog",0) >= 0
+				|| findKeyword(statement, "cat",0) >= 0
+				|| findKeyword(statement, "turtle",0) >= 0
+				|| findKeyword(statement, "frog",0)>= 0)
 		{
-			response = "Say something, please.";
+			response = "Tell me more about your pets.";
+		}
+		
+		else if (findKeyword(statement, "Mr. Robinette",0)>= 0)
+		{
+			response = "He sounds like a pretty dank teacher.";
+		}
+
+		else if (findKeyword(statement, "I want to", 0) >= 0)
+		{
+			response = transformIWantToStatement(statement);
 		}
 
 		else
 		{
-			response = getRandomResponse();
+			int psn = findKeyword(statement, "you", 0);
+			if (psn >= 0 && findKeyword(statement, "me", psn) >= 0)
+			{
+				response = transformYouMeStatement(statement);
+			}
+			else
+			{
+				psn = findKeyword(statement, "I", 0);
+				if(psn >=0 && findKeyword(statement, "you", psn) >=0)
+					response = transformIYouStatement(statement);
+				else
+					response = getRandomResponse();
+
+			}
 		}
+		
 		return response;
 	}
 
+	private String transformIWantToStatement(String statement)
+	{
+		statement = statement.trim();
+		String lastChar = statement.substring(statement.length() -1);
+		if(lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement.length()-1);
+		}
+
+		int psn = findKeyword(statement, "I want to");
+		String restOfStatement = statement.substring(psn + 9);
+		return "What would it mean to" + restOfStatement + "?";
+	}
+
+
+	private String transformYouMeStatement(String statement)
+	{
+		statement = statement.trim();
+		String lastChar = statement.substring(statement.length() -1);
+		if(lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement.length()-1);
+		}
+
+		int psnOfYou = findKeyword(statement, "you");
+		int psnOfMe = findKeyword(statement, "me", psnOfYou + 3);
+		String restOfStatement = statement.substring(psnOfYou + 3, psnOfMe);
+		return "What makes you think that I" + restOfStatement + "you?";
+	}
+	
+	private String transformIYouStatement(String statement)
+	{
+		String phrase = statement.trim().toLowerCase();
+		String lastChar = phrase.substring(phrase.length() -1);
+		
+		if(lastChar.equals("."))
+		{
+			phrase = phrase.substring(0, phrase.length()-1);
+		}
+		
+		int psnOfI = findKeyword(statement, "I");
+		int psnOfYou = findKeyword(phrase , "you", psnOfI + 1);
+		String restOfStatement = phrase.substring(psnOfI + 1, psnOfYou);
+		
+		return "Why do you " + restOfStatement + " me?";
+	}
+	
 	private int findKeyword(String statement, String goal, int startPos)
 	{
 		String phrase = statement.trim().toLowerCase();
