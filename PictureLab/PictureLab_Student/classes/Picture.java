@@ -247,7 +247,7 @@ public class Picture extends SimplePicture
     for (int row = 158; row < mirrorPoint; row++)
     {
       // loop from 103 to just before the mirror point
-      for (int col = 103; col < 300; col++)
+      for (int col = 102; col < 170; col++)
       {
         topPixel = pixels[row][col];
         bottomPixel = pixels[col][mirrorPoint - row + mirrorPoint];
@@ -349,15 +349,15 @@ public class Picture extends SimplePicture
   
   public void myCollage()
   {
-	Picture flower1 = new Picture("flower1.jpg");
-    this.copy(flower1,0,0);
-    this.copy(flower1,100,0);
-	this.copy(flower1,200,0);
-	this.copy(flower1,300,0);
-    this.copy(flower1,400,0);
-    this.copy(flower1,500,0);
-    this.mirrorVertical();
-    this.write("mycollage.jpg");  
+	Picture flower2 = new Picture("flower2.jpg");
+    this.copy(flower2,0,0);
+	this.copy(flower2,100,0);
+    this.copy(flower2,200,0);
+	this.copy(flower2,300,0);
+    this.copy(flower2,400,0);
+    this.copy(flower2,500,0);
+	this.mirrorVertical();
+    this.write("mycollage.jpg");
   }
   
   /** Method to show large changes in color 
@@ -397,7 +397,8 @@ public class Picture extends SimplePicture
 	Color bottomColor = null;
     for (int row = 0; row < pixels.length-1; row++)
     {
-      for (int col = 0; col < pixels[0].length-1; col++)
+      for (int col = 0; 
+        col < pixels[0].length-1; col++)
       {
         leftPixel = pixels[row][col];
         rightPixel = pixels[row][col+1];
@@ -418,7 +419,6 @@ public class Picture extends SimplePicture
       }
     }
   }
-  
   
   /* Main method for testing - each class in Java can have a main 
    * method 
