@@ -3,11 +3,26 @@ public class HighLow
 {
 	public static void main(String[] args)
 	{
-		System.out.println("INSTRUCTIONS:");
-		System.out.println("You will be playing a card game called HighLow. In HighLow, the user is randomly given the value");
-		System.out.println("of a card and must predict whether the next card in the deck will have a value higher or lower than");
-		System.out.println("the current card. If their prediction is incorrect, the user loses and the total number of points they");
-		System.out.println("have accumulated is their final score.");
+		System.out.println("");
+		System.out.println("~*~*~ WELCOME TO THE HIGHLOW CARD GAME ~*~*~");
+		System.out.println("________________________________________________");
+		System.out.println("");
+		System.out.println("OBJECTIVE:");
+		System.out.println("In HighLow, you are randomly given the value");
+		System.out.println("of a card and must predict whether the next card");
+		System.out.println("in the deck will have a value higher or lower than");
+		System.out.println("the current card.");
+		System.out.println("");
+		System.out.println("HOW TO PLAY:");
+		System.out.println("You must enter high if you think the next card will be ");
+		System.out.println("higher or low if you think the next card will be lower. ");
+		System.out.println(" ");
+		System.out.println("HOW TO WIN:");
+		System.out.println("If your guess is correct you gain a point.");
+		System.out.println("If your guess is incorrect,");
+		System.out.println("you lose the game and the total number of");
+		System.out.println("points you have accumulated is your final score.");
+		System.out.println("________________________________________________");
 		
 		game();
     } 
@@ -25,12 +40,12 @@ public class HighLow
       //rightguesses = 0;
       //currentcard = deck.deal();
 	  System.out.println();
-      System.out.println("The first card is: " + yourCard);
+      System.out.println("CARD: " + yourCard);
+	  System.out.println();
 	  
       while (true)
 	  { 
-        System.out.println("Enter high if you think the next card will be higher. ");
-		System.out.println("Enter low if you think the next card will be lower. ");
+		System.out.println("Type your guess below.");
 		guess = kb.nextLine();
 		System.out.println();
 		 
@@ -78,7 +93,7 @@ public class HighLow
 			
 			yourCard = nextCard;
 			System.out.println();
-			System.out.println("Your next card is " + yourCard);
+			System.out.println("CARD: " + yourCard);
 		}
       }
 	  
@@ -89,9 +104,4 @@ public class HighLow
     return rightGuesses;
       
    }  // end game()
-   
-   public void format(String item, double price)
-	{
-		System.out.printf("\n*\t%15s . . . . . . . . %10.2f", item, price);
-	}
 }
